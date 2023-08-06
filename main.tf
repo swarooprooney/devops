@@ -34,7 +34,7 @@ resource "azurerm_container_group" "azuredevopscontainer"{
 
   container {
     name   = "hello-world"
-    image  = "swarooprooney/azuredevops:latest"
+    image  = "swarooprooney/azuredevops:${var.BUILD_ID}"
     cpu    = "0.5"
     memory = "1.5"
 
@@ -43,4 +43,9 @@ resource "azurerm_container_group" "azuredevopscontainer"{
       protocol = "TCP"
     }
   }
+}
+
+variable "BUILD_ID" {
+  type        = string
+  description = "the build id which is tagged to the image while deploying"
 }
