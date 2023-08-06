@@ -9,6 +9,16 @@ provider "azurerm" {
     features {}
 }
 
+terraform {
+  required_version = ">= 0.12"
+  backend azurerm {
+    resource_group_name = "terraform-rg"
+    storage_account_name = "tfstorageswarooprooney"
+    container_name = "tfstate"
+    key = "terraform.tfstate"
+  }
+}
+
 resource "azurerm_resource_group" "tf_test" {
     name = "devops-rg"
     location = "southindia"
