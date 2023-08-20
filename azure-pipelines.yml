@@ -8,6 +8,17 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
+- stage: Versionize
+  displayName: Adding Versionize to the build pipeline
+  jobs:
+  - job: AddVersionize
+    displayName: Add Versionize
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - script: |
+          dotnet tool install --global Versionize --version 1.17.0
+          versionize
 - stage: Build
   displayName: Build image
   jobs:
