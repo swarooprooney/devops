@@ -1,6 +1,8 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 1.0.1 (2023-08-27)
 
 <a name="1.0.0"></a>
 ## [1.0.0](https://www.github.com/swarooprooney/devops/releases/tag/v1.0.0) (2023-8-20)
@@ -16,4 +18,3 @@ All notable changes to this project will be documented in this file. See [versio
 ### Breaking Changes
 
 * adding conventional commits ([b036e00](https://www.github.com/swarooprooney/devops/commit/b036e000996c29322694d49b5664b33a872462ca))
-
