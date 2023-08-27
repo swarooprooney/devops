@@ -1,5 +1,7 @@
 trigger:
-- main
+  branches:
+    include:
+      - "*"
 
 resources:
 - repo: self
@@ -34,7 +36,7 @@ stages:
       - script: echo 'Push artifact to artifact repository'
         condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         displayName: Upload Artifact
-- stage: Build
+# - stage: Build
   displayName: Build image
   jobs:
   - job: Build
@@ -51,7 +53,7 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
-- stage: Provision
+# - stage: Provision
   displayName: 'tf state to azure'
   dependsOn: Build
   jobs:
