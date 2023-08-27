@@ -28,11 +28,11 @@ stages:
           git config --global user.name "azurebot"
           standard-version
           git push --follow-tags origin HEAD:$(Build.SourceBranchName)
-        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         name: npm_pump_script
         displayName: Bump Version
       - script: echo 'Push artifact to artifact repository'
-        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         displayName: Upload Artifact
 - stage: Build
   displayName: Build image
