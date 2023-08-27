@@ -8,17 +8,32 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- stage: Versionize
-  displayName: Adding Versionize to the build pipeline
+- stage: conventionalcommit
+  displayName: conventional commit
   jobs:
-  - job: AddVersionize
-    displayName: Add Versionize
+  - job: test
     pool:
-      vmImage: ubuntu-latest
+        vmImage: "ubuntu-latest"
     steps:
+      - checkout: self
+        persistCredentials: "true"
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: "build"
+          projects: "**/*.csproj"
+        displayName: DotNet Build
       - script: |
-          dotnet tool install --global Versionize --version 1.17.0
-          versionize
+          sudo npm install -g standard-version
+          git config --global user.email "azure@bot.com"
+          git config --global user.name "azurebot"
+          standard-version
+          git push --follow-tags origin HEAD:$(Build.SourceBranchName)
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+        name: npm_pump_script
+        displayName: Bump Version
+      - script: echo 'Push artifact to artifact repository'
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+        displayName: Upload Artifact
 - stage: Build
   displayName: Build image
   jobs:
