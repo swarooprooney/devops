@@ -37,42 +37,42 @@ stages:
         condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         displayName: Upload Artifact
 # - stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Docker Build and Push 
-      inputs:
-        containerRegistry: 'Devops Docker Service Connection'
-        repository: 'swarooprooney/azuredevops'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-        tags: |
-          $(tag)
+  # displayName: Build image
+  # jobs:
+  # - job: Build
+  #   displayName: Build
+  #   pool:
+  #     vmImage: ubuntu-latest
+  #   steps:
+  #   - task: Docker@2
+  #     displayName: Docker Build and Push 
+  #     inputs:
+  #       containerRegistry: 'Devops Docker Service Connection'
+  #       repository: 'swarooprooney/azuredevops'
+  #       command: 'buildAndPush'
+  #       Dockerfile: '**/Dockerfile'
+  #       tags: |
+  #         $(tag)
 # - stage: Provision
-  displayName: 'tf state to azure'
-  dependsOn: Build
-  jobs:
-    - job: Provision
-      displayName: 'Provision container instance'
-      pool:
-        vmImage: 'ubuntu-latest'
-      variables:
-      - group: TerraformServicePrincipleVars
-      steps:
-        - script: |
-            set -e 
-            terraform init -input=false
-            terraform apply -input=false -auto-approve
-          name: 'Runterraform'
-          displayName: 'Run terraform script'
-          env :
-            ARM_CLIENT_ID : $(ARM_CLIENT_ID)
-            ARM_CLIENT_SECRET : $(ARM_CLIENT_SECRET)
-            ARM_SUBSCRIPTION_ID : $(ARM_SUBSCRIPTION_ID)
-            ARM_TENANT_ID : $(ARM_TENANT_ID)
-            TF_VAR_BUILD_ID : $(Build.BuildId)
+  # displayName: 'tf state to azure'
+  # dependsOn: Build
+  # jobs:
+  #   - job: Provision
+  #     displayName: 'Provision container instance'
+  #     pool:
+  #       vmImage: 'ubuntu-latest'
+  #     variables:
+  #     - group: TerraformServicePrincipleVars
+  #     steps:
+  #       - script: |
+  #           set -e 
+  #           terraform init -input=false
+  #           terraform apply -input=false -auto-approve
+  #         name: 'Runterraform'
+  #         displayName: 'Run terraform script'
+  #         env :
+  #           ARM_CLIENT_ID : $(ARM_CLIENT_ID)
+  #           ARM_CLIENT_SECRET : $(ARM_CLIENT_SECRET)
+  #           ARM_SUBSCRIPTION_ID : $(ARM_SUBSCRIPTION_ID)
+  #           ARM_TENANT_ID : $(ARM_TENANT_ID)
+  #           TF_VAR_BUILD_ID : $(Build.BuildId)
