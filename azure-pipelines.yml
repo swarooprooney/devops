@@ -32,7 +32,8 @@ stages:
           git config --global user.email "azure@bot.com"
           git config --global user.name "azurebot"
           standard-version
-          git push --follow-tags origin HEAD:$(Build.SourceBranchName)
+          git pull
+          git push
         #condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         name: npm_pump_script
         displayName: Bump Version
