@@ -1,7 +1,9 @@
-pr:
+trigger:
   branches:
     include:
       - main
+    exclude:
+      - changelog.md
 
 resources:
 - repo: self
