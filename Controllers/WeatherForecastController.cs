@@ -22,7 +22,7 @@ public class WeatherForecastController : ControllerBase
     /// <summary>
     /// Gets the weather forecast for the city
     /// </summary>
-    /// <returns></returns>
+    /// <returns>weather forecast for the city that was passed in</returns>
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
