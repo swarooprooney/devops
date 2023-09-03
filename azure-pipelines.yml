@@ -33,6 +33,7 @@ stages:
           git config --global user.name "azurebot"
           standard-version
           git pull origin HEAD:$(Build.SourceBranchName)
+          git config pull.rebase false
           git push origin HEAD:$(Build.SourceBranchName)
         #condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         name: npm_pump_script
