@@ -20,7 +20,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     /// <summary>
-    /// 
+    /// Gets the weather forecast for the city
     /// </summary>
     /// <returns></returns>
     [HttpGet(Name = "GetWeatherForecast")]
