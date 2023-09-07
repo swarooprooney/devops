@@ -32,10 +32,8 @@ stages:
           git config --global user.email "azure@bot.com"
           git config --global user.name "azurebot"
           standard-version
-          git pull origin HEAD:$(Build.SourceBranchName)
-          git config pull.rebase false
           git push origin HEAD:$(Build.SourceBranchName)
-        #condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         name: npm_pump_script
         displayName: Bump Version
       - script: echo 'Push artifact to artifact repository'
