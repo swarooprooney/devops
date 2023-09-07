@@ -20,9 +20,9 @@ public class WeatherForecastController : ControllerBase
     }
 
     /// <summary>
-    /// 
+    /// Gets the weather forecast for the city
     /// </summary>
-    /// <returns></returns>
+    /// <returns>weather forecast for the city that was passed in</returns>
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
@@ -32,6 +32,6 @@ public class WeatherForecastController : ControllerBase
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
-        .ToArray();
+        .ToList();
     }
 }
