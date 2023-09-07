@@ -7,3 +7,5 @@ All notable changes to this project will be documented in this file. See [standa
 ### 1.0.1 (2023-09-07)
 
 ### 1.0.1 (2023-09-07)
+
+### 1.0.1 (2023-09-07)
